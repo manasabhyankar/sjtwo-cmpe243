@@ -1,5 +1,8 @@
 #include "periodic_callbacks.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 #include "board_io.h"
 #include "gpio.h"
 #include "switch_led.h"
@@ -15,7 +18,10 @@ void periodic_callbacks__initialize(void) {
 
 void periodic_callbacks__1Hz(uint32_t callback_count) {
   gpio__toggle(board_io__get_led0());
-  //
+
+  if (callback_count >= 10) {
+    vTaskDelay(1001);
+  }
 }
 
 void periodic_callbacks__10Hz(uint32_t callback_count) {
