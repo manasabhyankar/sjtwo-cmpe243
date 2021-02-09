@@ -19,7 +19,7 @@ void periodic_callbacks__initialize(void) {
 void periodic_callbacks__1Hz(uint32_t callback_count) {
   gpio__toggle(board_io__get_led0());
 
-  if (callback_count >= 10) {
+  if (callback_count >= 6) {
     vTaskDelay(1001);
   }
 }
